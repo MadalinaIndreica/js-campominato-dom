@@ -59,6 +59,9 @@ header {
     justify-content: center;
     align-items: center;
 }
+.red-background{
+    background-color: rgb(133, 0, 0);
+}
 .hidden {
     display: none;
 }
@@ -79,4 +82,11 @@ footer{
 }
 .footer-text {
     vertical-align: sub;
+}
+
+@media screen and (min-width: 770px) {
+    .grid {
+        width: 40%;
+    }
+
 }

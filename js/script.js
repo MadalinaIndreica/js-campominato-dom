@@ -1,6 +1,7 @@
 const gridElem = document.querySelector(".grid");
 //array numeri non bombe:
 let notBombsCells = [];
+let gameOver = false;
 
 // BUTTON
 document.getElementById("my-button").addEventListener("click", ButtonClick);
@@ -14,8 +15,9 @@ function ButtonClick() {
     document.getElementById("title").classList.add("hidden");
     const levelSelect = document.getElementById("level").value;
     //generare bombe nei vari renge
-    const bombs = bombsGenerator(levelSelect);
+    let bombs = bombsGenerator(levelSelect);
     console.log(bombs);
+    
     //numero massimo tentativi consentiti
     const maxChance = levelSelect - bombs.length;
     console.log(maxChance);
@@ -30,8 +32,35 @@ function ButtonClick() {
          //logica del gioco 
 
         cell.addEventListener("click", function() {
-           this.style.backgroundColor = "darkblue";
+          if (gameOver){
+            return;
+          }
+          //this.textContent
            console.log(curNumber);
+           notBombsCells.push (curNumber);
+           console.log(notBombsCells);
+
+           if (bombs.includes(curNumber)) {
+            
+            cell.classList.add("red-background");
+            console.log("bomba trovata! hai perso");
+            alert("bomba trovata! hai perso");
+            gameOver = true; 
+        
+            //gridElem.classList.add("hidden");
+            
+           } 
+           else
+            {
+            this.style.backgroundColor ="blue";
+
+           }
+           if (notBombsCells.length  === maxChance){
+            
+            gameOver = true;
+            console.log("hai vintooooo");}
+
+
         })
          gridElem.append(cell);
 
